@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -24,11 +24,14 @@ import {
   User,
   Settings,
 } from "lucide-react";
+import { useAuth } from "./AuthProvider";
+import UserMenu from "./UserMenu";
 import JobUrlInput from "./JobUrlInput";
 import ProfileManager from "./ProfileManager";
 import ApplicationLog from "./ApplicationLog";
 
 const Home = () => {
+  const { user } = useAuth();
   // Mock data for UI scaffolding
   const applicationStats = {
     total: 42,
@@ -134,18 +137,7 @@ const Home = () => {
         </nav>
 
         <div className="mt-auto pt-4 border-t">
-          <div className="flex items-center gap-3">
-            <Avatar>
-              <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">
-                john.doe@example.com
-              </p>
-            </div>
-          </div>
+          <UserMenu />
         </div>
       </div>
 
